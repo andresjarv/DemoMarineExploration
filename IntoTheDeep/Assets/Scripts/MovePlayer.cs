@@ -15,7 +15,7 @@ public class SwimmingController : MonoBehaviour
     [SerializeField] private float maxOxygen = 30f;
     [SerializeField] private float depletionRate = 1f;
     [SerializeField] private float refillRate = 2f;
-
+   
     [Header("Componentes y UI")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private RectTransform airBarRect; // Usamos RectTransform para UI
@@ -34,6 +34,8 @@ public class SwimmingController : MonoBehaviour
     [SerializeField] private float radioMaximoLuz = 5f;
     // El radio 'crítico' (ej. 1) cuando casi no queda oxígeno
     [SerializeField] private float radioMinimoLuz = 1.2f;
+
+    public bool hasYellowKey;
 
     private float currentOxygen;
     private Vector2 moveInput;
@@ -102,7 +104,7 @@ public class SwimmingController : MonoBehaviour
 
     private void UpdateOxygen()
     {
-        
+
         float rate = isUnderwater ? -depletionRate : refillRate;
         currentOxygen = Mathf.Clamp(currentOxygen + (rate * Time.deltaTime), 0, maxOxygen);
 
@@ -169,13 +171,34 @@ public class SwimmingController : MonoBehaviour
         if (auraLuz != null) auraLuz.pointLightOuterRadius = radioMaximoLuz; 
     }
     // Optimizado: Solo detectamos el cambio de estado una vez
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Surface")) isUnderwater = false;
+        //if (collision.CompareTag("Surface")) isUnderwater = false;
+        if (collision.transform.CompareTag("RechargeOx"))
+        {
+            currentOxygen = +20;
+            Debug.Log("Oxígeno recargado al máximo");
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.transform.CompareTag("spike"))
+        {
+            currentOxygen = -10;
+        }
+
+        if (collision.transform.CompareTag("YKey"))
+        {
+            // 1. Registramos que el jugador ahora tiene la llave
+            hasYellowKey = true;
+
+            // 2. Destruimos el objeto de la llave en la escena para simular que fue recolectada
+            Destroy(collision.gameObject);
+        }
+
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.CompareTag("Surface")) isUnderwater = true;
+        if (collision.CompareTag("Surface")) isUnderwater = true;
     }
 }

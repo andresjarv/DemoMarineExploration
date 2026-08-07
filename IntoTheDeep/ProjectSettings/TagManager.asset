@@ -6,11 +6,16 @@ TagManager:
   tags:
   - Surface
   - Lanza
+  - RechargeOx
+  - spike
+  - YKey
+  - RKey
+  - GKey
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - wall
   - Water
   - UI
   - 

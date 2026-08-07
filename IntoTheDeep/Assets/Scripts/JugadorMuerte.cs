@@ -25,6 +25,8 @@ public class JugadorMuerte : MonoBehaviour
         // Si tienes un script de movimiento, obtén su referencia y desactívalo.
         GetComponent<SwimmingController>().enabled = false;
 
+        GetComponent<ControlCirculoMultifuncional>().enabled = false; 
+
         // 3. Resetear la posición (Opcional: Esperar unos segundos antes)
         // Para hacerlo instantáneo:
         ResetearPosicion();
