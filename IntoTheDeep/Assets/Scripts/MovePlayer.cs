@@ -19,6 +19,7 @@ public class SwimmingController : MonoBehaviour
     [Header("Componentes y UI")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private RectTransform airBarRect; // Usamos RectTransform para UI
+    [SerializeField] private Image yellowKeyImage;
 
     [Header("UI de Ox�geno Flotante")]
     [SerializeField] private Image oxygenCircle;
@@ -36,7 +37,6 @@ public class SwimmingController : MonoBehaviour
     [SerializeField] private float radioMinimoLuz = 1.2f;
 
     public bool hasYellowKey;
-
     private float currentOxygen;
     private Vector2 moveInput;
     private bool isUnderwater = true;
@@ -191,8 +191,20 @@ public class SwimmingController : MonoBehaviour
             // 1. Registramos que el jugador ahora tiene la llave
             hasYellowKey = true;
 
+            // 3. Activamos el icono de la llave en el HUD
+            if (yellowKeyImage != null)
+            {
+                // Como ahora es un componente Image, usamos .gameObject para encender el objeto completo
+                yellowKeyImage.gameObject.SetActive(true);
+
+                // NOTA: Si en lugar de apagar el objeto, prefieres apagar solo el componente Image, usarías:
+                // yellowKeyImage.enabled = true;
+            }
+
             // 2. Destruimos el objeto de la llave en la escena para simular que fue recolectada
             Destroy(collision.gameObject);
+
+
         }
 
     }
