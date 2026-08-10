@@ -9,8 +9,7 @@ TagManager:
   - RechargeOx
   - spike
   - YKey
-  - RKey
-  - GKey
+  - Bomb
   layers:
   - Default
   - TransparentFX

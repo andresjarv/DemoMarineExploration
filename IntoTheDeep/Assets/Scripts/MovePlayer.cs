@@ -184,6 +184,11 @@ public class SwimmingController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
+        if (collision.transform.CompareTag("Bomb"))
+        {
+            Die();
+        }
+
         if (collision.transform.CompareTag("spike"))
         {
             currentOxygen = -10;
