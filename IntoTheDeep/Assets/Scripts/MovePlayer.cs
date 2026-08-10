@@ -52,6 +52,9 @@ public class SwimmingController : MonoBehaviour
         scriptMuerte = GetComponent<JugadorMuerte>();
         rb.gravityScale = 0;
 
+        // Inicializamos la UI de la llave amarilla como desactivada
+        yellowKeyImage.gameObject.SetActive(false);
+
         // Inicializamos la luz al máximo
         if (auraLuz != null) auraLuz.pointLightOuterRadius = radioMaximoLuz;
     }
