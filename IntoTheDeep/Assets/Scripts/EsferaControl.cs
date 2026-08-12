@@ -1,12 +1,12 @@
 using UnityEngine;
 
-using UnityEngine;
 
 public class ControlEsfera2D : MonoBehaviour
 {
     [Header("Configuración")]
     [SerializeField] private float velocidad = 12f;
     [SerializeField] private Camera cam;
+    [SerializeField] private float fuerzaSeguimiento = 50f;
 
     private Rigidbody2D rb;
     private Vector2 posicionObjetivo;
@@ -34,8 +34,15 @@ public class ControlEsfera2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Mueve la esfera suavemente usando el motor de físicas
-        Vector2 nuevaPos = Vector2.MoveTowards(rb.position, posicionObjetivo, velocidad * Time.fixedDeltaTime);
-        rb.MovePosition(nuevaPos);
+        //// Mueve la esfera suavemente usando el motor de físicas
+        //Vector2 nuevaPos = Vector2.MoveTowards(rb.position, posicionObjetivo, velocidad * Time.fixedDeltaTime);
+        //rb.MovePosition(nuevaPos);
+        Vector2 direccion = (posicionObjetivo - rb.position);
+
+        // Aplica fuerza proporcional a la distancia del cursor
+        rb.AddForce(direccion * fuerzaSeguimiento);
+
+        // Aplica rozamiento/resistencia para que no acelere infinitamente
+        rb.linearVelocity *= 0.9f; // O ajusta el 'Linear Drag' directamente en el Inspector
     }
 }
