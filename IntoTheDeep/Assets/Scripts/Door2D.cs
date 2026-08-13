@@ -3,7 +3,7 @@ using UnityEngine;
 public class Door2D : MonoBehaviour
 {
     [SerializeField] private bool disableOnOpen = true; // Si es true, el objeto simplemente se oculta
-    [SerializeField] private Vector3 openOffset = new Vector3(0, 3, 0); // Desplazamiento para mover la puerta
+    [SerializeField] private Vector3 openOffset = new Vector3(3, 0, 0); // Desplazamiento para mover la puerta
     [SerializeField] private float openSpeed = 2f; // Velocidad con la que se mueve la puerta
 
     private bool isOpen = false;

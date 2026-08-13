@@ -183,12 +183,7 @@ public class SwimmingController : MonoBehaviour
             Debug.Log("Oxígeno recargado al máximo");
             Destroy(collision.gameObject);
         }
-
-        if (collision.transform.CompareTag("Bomb"))
-        {
-            Die();
-        }
-
+                
         if (collision.transform.CompareTag("spike"))
         {
             currentOxygen = -10;
