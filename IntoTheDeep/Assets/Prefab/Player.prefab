@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 6090810862112608246}
   - component: {fileID: 6302118255487311477}
   - component: {fileID: 3276299297741489469}
+  - component: {fileID: 3210013602512014055}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -145,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7521298311390052263}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.009927348, w: 0.99995077}
+  m_LocalRotation: {x: 0, y: 0, z: -0.009930827, w: 0.9999507}
   m_LocalPosition: {x: 8.19902, y: -1.7908101, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -153,7 +154,7 @@ Transform:
   - {fileID: 8637810022542315032}
   - {fileID: 3314281476125147052}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.138}
 --- !u!212 &8917586013000262371
 SpriteRenderer:
   serializedVersion: 2
@@ -229,20 +230,6 @@ MonoBehaviour:
   sprintSpeed: 6
   rotationSpeed: 8
   buoyancyForce: 0.5
-  maxOxygen: 200
-  depletionRate: 1
-  refillRate: 2
-  rb: {fileID: 6090810862112608246}
-  airBarRect: {fileID: 0}
-  yellowKeyImage: {fileID: 0}
-  oxygenCircle: {fileID: 7547501531422926436}
-  fullColor: {r: 1, g: 0.39811313, b: 0.39811313, a: 1}
-  lowColor: {r: 1, g: 1, b: 1, a: 1}
-  dangerThreshold: 2.57
-  auraLuz: {fileID: 0}
-  radioMaximoLuz: 1.67
-  radioMinimoLuz: 0.5
-  hasYellowKey: 0
 --- !u!61 &3607489530948338758
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -380,6 +367,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db47d36a5d663546a9e5db4596841c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JugadorMuerte
+  gameOverManager: {fileID: 0}
+--- !u!114 &3210013602512014055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521298311390052263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7f486403413b764c8669010af2b2957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerOxygen
+  maxOxygen: 30
+  depletionRate: 1
+  oxygenCircle: {fileID: 7547501531422926436}
+  fullColor: {r: 0, g: 1, b: 0.49419165, a: 1}
+  lowColor: {r: 1, g: 0, b: 0, a: 1}
+  dangerThreshold: 0.29
+  auraLuz: {fileID: 1755361405055538002, guid: b4a19f1c0ac3ed0438547acc5e5b6d4d, type: 3}
+  radioMaximoLuz: 1.5
+  radioMinimoLuz: 0.3
 --- !u!1 &8281471479963065894
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,59 +1,57 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; // Crucial para el manejo de escenas
 
 public class GameOverManager : MonoBehaviour
 {
-    // Singleton
-    public static GameOverManager Instancia { get; private set; }
+    [Header("UI Reference")]
+    [Tooltip("Arrastra aquí el panel de Game Over (el objeto padre)")]
+    [SerializeField] private GameObject gameOverPanel;
 
-    [SerializeField] private GameObject GameOverPanel; // Referencia al panel de UI que creamos
+    [Header("Scripts a desactivar")]
+    [Tooltip("Arrastra aquí al Player para apagar su script de movimiento")]
+    [SerializeField] private MonoBehaviour playerMovementScript;
 
-    private void Awake()
-    {
-        // Configurar el Singleton
-        if (Instancia != null && Instancia != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Instancia = this;
-            DontDestroyOnLoad(gameObject); // Para que no se destruya al cambiar de escena si añades más niveles
-        }
-    }
+    [Tooltip("Arrastra aquí a la Esfera para apagar su seguimiento")]
+    [SerializeField] private MonoBehaviour sphereControlScript;
 
     private void Start()
     {
-        // Asegurarnos de que el panel está oculto al empezar
-        if (GameOverPanel != null)
+        // Nos aseguramos de que el panel esté apagado al arrancar el nivel
+        if (gameOverPanel != null)
         {
-            GameOverPanel.SetActive(false);
+            gameOverPanel.SetActive(false);
         }
     }
 
-    public void MostrarGameOver()
+    // El script del oxígeno llamará a esta función cuando llegue a 0
+    public void TriggerGameOver()
     {
-        if (GameOverPanel != null)
+        Debug.Log("Oxígeno agotado: Iniciando Game Over");
+
+        // 1. Encendemos la interfaz
+        if (gameOverPanel != null)
         {
-            Debug.Log("Intentando mostrar panel");
-            GameOverPanel.SetActive(true);
-            // Puedes añadir sonido de muerte aquí
-            // Time.timeScale = 0; // Pausar el juego si quieres (tendrás que gestionarlo para el reinicio)
+            gameOverPanel.SetActive(true);
         }
-        else
+
+        // 2. Apagamos el input del jugador (las animaciones y partículas seguirán)
+        if (playerMovementScript != null)
         {
-            Debug.LogError("No se ha asignado el Panel de Game Over en el GameOverManager");
+            playerMovementScript.enabled = false;
+        }
+
+        // 3. Apagamos el seguimiento de la esfera de luz
+        if (sphereControlScript != null)
+        {
+            sphereControlScript.enabled = false;
         }
     }
 
-    // Función para el botón de Reiniciar (opcional)
-    public void ReiniciarNivel()
+    // Esta es la función que conectaremos al Botón de tu UI
+    public void RestartLevel()
     {
-        // Aquí podrías recargar la escena actual, o usar la lógica de resetear posición que ya hicimos.
-        // Si reinicias posición, no olvides ocultar el panel de nuevo y reactivar el tiempo si lo pausaste.
-        GameOverPanel.SetActive(false);
-        Time.timeScale = 1;
-
-        // O, para recargar la escena (necesitas using UnityEngine.SceneManagement;):
-        // SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Recargando escena...");
+        // Recarga dinámicamente la escena en la que estemos (sirve para Nivel 1, 2 o 3)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -1,41 +1,24 @@
 using UnityEngine;
 
-
-
-
 public class DeadPlayer : MonoBehaviour
 {
-    private Vector2 posicionInicial; // Para guardar la posición donde empieza
+    [Header("Referencias")]
+    [Tooltip("Arrastra aquí el objeto que tiene el script GameOverManager")]
+    [SerializeField] private GameOverManager gameOverManager;
 
-    private void Start()
-    {
-        // Al inicio, guardamos la posición actual como la posición de respawn
-        posicionInicial = transform.position;
-    }
-
-    // Esta función es llamada por el enemigo
+    // Esta función es llamada por las bombas, trampas o el oxígeno al llegar a 0
     public void Die()
     {
-        Debug.Log("¡El jugador ha muerto!");
+        Debug.Log("¡El jugador ha muerto! Avisando al Manager...");
 
-        // 1. Mostrar la pantalla de Game Over
-        GameOverManager.Instancia.MostrarGameOver();
-
-        // 2. Desactivar el control del jugador (opcional pero recomendado)
-        // Si tienes un script de movimiento, obtén su referencia y desactívalo.
-        GetComponent<SwimmingController>().enabled = false;
-
-        GetComponent<ControlSphere>().enabled = false; 
-
-        // 3. Resetear la posición (Opcional: Esperar unos segundos antes)
-        // Para hacerlo instantáneo:
-        ResetPosition();
-    }
-
-    public void ResetPosition()
-    {
-        transform.position = posicionInicial;
-        // Reactivar el movimiento si lo desactivaste
-        GetComponent<SwimmingController>().enabled = true;
+        if (gameOverManager != null)
+        {
+            // Le pasamos toda la responsabilidad de apagar scripts y mostrar UI al Manager
+            gameOverManager.TriggerGameOver();
+        }
+        else
+        {
+            Debug.LogError("¡Cuidado! No has asignado el GameOverManager en el inspector del Player.");
+        }
     }
 }

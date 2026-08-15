@@ -1,0 +1,59 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+public class PlayerMovement : MonoBehaviour
+{
+    [Header("Movimiento Acuático")]
+    [SerializeField] private float swimSpeed = 3f;
+    [SerializeField] private float sprintSpeed = 6f;
+    [SerializeField] private float rotationSpeed = 8f;
+    [SerializeField] private float buoyancyForce = 0.5f;
+
+    private Rigidbody2D rb;
+    private Vector2 moveInput;
+    private bool isUnderwater = true;
+    private float targetSpeed;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+    }
+
+    void Update()
+    {
+        // 1. Captura de Input
+        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.y = Input.GetAxisRaw("Vertical");
+
+        targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : swimSpeed;
+    }
+
+    void FixedUpdate()
+    {
+        // 2. Aplicar físicas
+        MovePlayer();
+        ApplyBuoyancy();
+    }
+
+    private void MovePlayer()
+    {
+        if (moveInput.sqrMagnitude > 0.01f)
+        {
+            rb.linearVelocity = moveInput.normalized * targetSpeed;
+            float targetAngle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
+            float newAngle = Mathf.LerpAngle(rb.rotation, targetAngle - 90, rotationSpeed * Time.fixedDeltaTime);
+            rb.MoveRotation(newAngle);
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, 5f * Time.fixedDeltaTime);
+        }
+    }
+
+    private void ApplyBuoyancy()
+    {
+        if (isUnderwater)
+            rb.AddForce(Vector2.up * buoyancyForce, ForceMode2D.Force);
+    }
+}
