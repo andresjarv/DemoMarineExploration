@@ -11,6 +11,7 @@ TagManager:
   - YKey
   - Bomb
   - Sphere
+  - LightSphere
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - wall
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Sphere
   - 
   - 
   - 

@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 4231324382478560175}
   - component: {fileID: 2034815479908130917}
   - component: {fileID: 1755361405055538002}
-  - component: {fileID: 4387330235989377707}
   - component: {fileID: 4504508523353596067}
-  m_Layer: 0
+  - component: {fileID: 4258180864523101467}
+  - component: {fileID: 762135423982138884}
+  m_Layer: 7
   m_Name: Sphere
-  m_TagString: Sphere
+  m_TagString: LightSphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,21 +213,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!114 &4387330235989377707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6197960875686695324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a210c42b97ab71f468920d2742ee4f59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControlEsfera2D
-  velocidad: 3
-  cam: {fileID: 0}
-  fuerzaSeguimiento: 20
 --- !u!61 &4504508523353596067
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,6 +259,33 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.25636265, y: 0.20964035}
   m_EdgeRadius: 0
+--- !u!114 &4258180864523101467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197960875686695324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8722d5cdec1c28444ae3a62d70e82f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SphereLightCollider
+--- !u!114 &762135423982138884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6197960875686695324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108caa34ee30a1a469da3af252439de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControlSphere
+  velocidad: 4
+  cam: {fileID: 0}
+  fuerzaSeguimiento: 10
 --- !u!1 &9047812752917734337
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +297,7 @@ GameObject:
   - component: {fileID: 5519234137498686460}
   - component: {fileID: 5363790306156595065}
   - component: {fileID: 7395651295515087088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BurbujasEstela (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

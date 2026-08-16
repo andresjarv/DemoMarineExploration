@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3960168532741095876}
   - component: {fileID: 2932328220762942343}
   - component: {fileID: 1677210012876717587}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: OxygenCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 6302118255487311477}
   - component: {fileID: 3276299297741489469}
   - component: {fileID: 3210013602512014055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 3959266029642632593}
   - component: {fileID: 828516885857312720}
   - component: {fileID: 7547501531422926436}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 3314281476125147052}
   - component: {fileID: 5642594460369584952}
   - component: {fileID: 5604674545374068230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BurbujasEstela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
