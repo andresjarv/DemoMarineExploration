@@ -46,11 +46,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 2520888011
+    locked: 0
+  - name: ground
+    uniqueID: 1797262739
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Detras
-    uniqueID: 2520888011
+  - name: player
+    uniqueID: 1335227301
     locked: 0
   m_RenderingLayers:
   - Default
