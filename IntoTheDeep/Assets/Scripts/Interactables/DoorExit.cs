@@ -37,19 +37,11 @@ public class DoorExit : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        // Calculamos el índice del siguiente nivel de forma dinámica
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        // Verificamos si ese nivel existe en la configuración de Unity
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(nextSceneIndex);
-        }
+            SceneFader.Instance.FadeToScene(nextSceneIndex);
         else
-        {
-            Debug.Log("¡Demo completada! Volviendo al inicio.");
-            // Si no hay más niveles, recargamos el primer nivel (o un futuro Menú Principal)
-            SceneManager.LoadScene(0);
-        }
+            SceneFader.Instance.FadeToScene(0);
     }
 }
