@@ -17,17 +17,10 @@ public class LevelManager : MonoBehaviour
     public UnityEvent OnAllKeysCollected;
 
     private void Awake()
-    {
-        // Configuración básica del Singleton
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Debug.LogWarning("Hay más de un LevelManager en la escena. Destruyendo el duplicado.");
-            Destroy(gameObject);
-        }
+    {   // Sobrescribimos la instancia global con el Manager de ESTA escena.
+        // Al no usar DontDestroyOnLoad, este objeto morirá de forma natural al salir del nivel,
+        // dejando el espacio limpio para el LevelManager del siguiente nivel.
+        Instance = this;
     }
 
     // Método que llamarán las llaves al ser tocadas
