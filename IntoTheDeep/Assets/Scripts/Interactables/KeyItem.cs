@@ -22,8 +22,10 @@ public class KeyItem : MonoBehaviour
                 
             }
 
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxLlave);
-            Destroy(gameObject);
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxLlave);
+            }
             //Destruimos el objeto de la llave en la escena para simular que fue recolectada
             Destroy(gameObject);
 

@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 8f;
     [SerializeField] private float buoyancyForce = 0.5f;
 
+    [Header("Audio Settings")]
+    [Tooltip("Drag the Player's AudioSource here")]
+    [SerializeField] private AudioSource swimAudioSource;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private bool isUnderwater = true;
@@ -22,11 +26,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // 1. Captura de Input
+        // 1. Input Capture
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
         targetSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : swimSpeed;
+
+        // 2. Audio Control Logic
+        // We check if the magnitude is greater than 0.1 to avoid joystick drift issues
+        bool isMoving = moveInput.magnitude > 0.1f;
+
+        if (isMoving && !swimAudioSource.isPlaying)
+        {
+            swimAudioSource.Play();
+        }
+        else if (!isMoving && swimAudioSource.isPlaying)
+        {
+            swimAudioSource.Pause();
+        }
     }
 
     void FixedUpdate()
