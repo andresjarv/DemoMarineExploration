@@ -22,8 +22,8 @@ public class KeyItem : MonoBehaviour
                 
             }
 
-            //Opcional: particulas de recoleccion
-
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxLlave);
+            Destroy(gameObject);
             //Destruimos el objeto de la llave en la escena para simular que fue recolectada
             Destroy(gameObject);
 

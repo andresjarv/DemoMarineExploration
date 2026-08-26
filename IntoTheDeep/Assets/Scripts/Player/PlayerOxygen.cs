@@ -80,6 +80,7 @@ public class PlayerOxygen : MonoBehaviour
         {
             currentOxygen = Mathf.Clamp(currentOxygen + 20f, 0, maxOxygen);
             Debug.Log("Oxígeno sumado. Nivel actual: " + currentOxygen);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxOxigeno);
             Destroy(collision.gameObject);
         }
 
