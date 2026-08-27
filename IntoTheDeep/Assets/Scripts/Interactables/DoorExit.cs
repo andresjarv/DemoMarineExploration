@@ -39,7 +39,7 @@ public class DoorExit : MonoBehaviour
     {
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxLlave);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxPuerta);
         }
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 

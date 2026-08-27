@@ -82,7 +82,7 @@ public class PlayerOxygen : MonoBehaviour
             Debug.Log("Oxígeno sumado. Nivel actual: " + currentOxygen);
             if (AudioManager.Instance != null)
             {
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxLlave);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxOxigeno);
             }
             Destroy(collision.gameObject);
         }

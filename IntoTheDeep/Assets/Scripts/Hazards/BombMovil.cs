@@ -38,10 +38,15 @@ public class BombMovil : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxExplotion);
+        }
         Debug.Log("Algo entró en el trigger: " + other.name);
         // Verificamos si lo que colisionó tiene la etiqueta "Player"
         if (other.CompareTag("Player"))
         {
+            
             // Intentamos obtener el componente 'JugadorMuerte' del jugador
             DeadPlayer scriptPlayer = other.GetComponent<DeadPlayer>();
 

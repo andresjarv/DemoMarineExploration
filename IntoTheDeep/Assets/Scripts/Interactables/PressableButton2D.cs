@@ -25,6 +25,10 @@ public class PressableButton2D : MonoBehaviour
 
         if (!isPressed && collision.CompareTag(sphereTag))
         {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxButton);
+            }
             isPressed = true;
 
             if (spriteRenderer != null)
