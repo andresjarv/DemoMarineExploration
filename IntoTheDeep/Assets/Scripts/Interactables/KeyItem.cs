@@ -1,37 +1,29 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider2D))]
 public class KeyItem : MonoBehaviour
 {
-    [SerializeField] private Image yellowKeyImage;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            //Avisar al manager
-            LevelManager.Instance.AddKey();
-
-            //Opcional: particulas de recoleccion            
-
-            //Activamos el icono de la llave en el HUD
-            if (yellowKeyImage != null)
+            // 1. Avisamos al Manager. 
+            // EL MANAGER es ahora el único responsable de encender el icono correcto en el HUD.
+            if (LevelManager.Instance != null)
             {
-                // Como ahora es un componente Image, usamos .gameObject para encender el objeto completo
-                yellowKeyImage.gameObject.SetActive(true);
-                
+                LevelManager.Instance.AddKey();
             }
 
+            // 2. Reproducimos el sonido global
             if (AudioManager.Instance != null)
             {
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.sfxLlave);
             }
-            //Destruimos el objeto de la llave en la escena para simular que fue recolectada
+
+            // 3. Opcional: Instanciar aquí el prefab de partículas de recolección
+
+            // 4. Destruimos el objeto físico de la escena
             Destroy(gameObject);
-
-        }        
-
-        
+        }
     }
-
 }
