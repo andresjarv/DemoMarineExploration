@@ -43,7 +43,7 @@ El juego está compuesto por varios componentes funcionales, cada uno implementa
 ## Installation Process
 Para ejecutar la demostración, el usuario debe cumplir con los siguientes requisitos de software y realizar estos pasos:
 
-0.  **Importante:** En la raiz del proyecto hay un archivo comprimido llamado `Build_Demo_Marine.zip` este es el que se debe descargar.
+0.  **Importante:** En la raiz del proyecto hay un archivo comprimido llamado [Descargar aqui](Build_Demo_Marine.zip) este es el que se debe descargar.
 1.  **Descarga:** Obtenga el archivo comprimido en formato `.zip` que contiene la compilación ejecutable para Windows (arquitectura x86_64).
 2.  **Descompresión:** Haga clic derecho sobre el archivo `.zip` y seleccione "Extraer todo...". **Nota Crítica:** Extraiga todo el contenido en una misma carpeta local. Es estrictamente necesario que el archivo `.exe` permanezca junto a su subcarpeta respectiva de *Data* (ej. `[NombreJuego]_Data`) para poder iniciar.
 3.  **Ejecución:** Acceda a la carpeta donde está almacenado el proyecto y abra el archivo `.exe`[cite: 1]. 
